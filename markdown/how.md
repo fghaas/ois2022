@@ -106,3 +106,14 @@ conn.create_floating_ip()
 ```python
 conn.add_auto_ip(s, reuse=True)
 ```
+
+
+## Showing what’s happening
+
+
+## Enabling debug logging <!-- .element class="hidden" -->
+
+```python
+openstack.enable_logging(debug=True,
+                         http_debug=True)
+```
