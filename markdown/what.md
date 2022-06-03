@@ -9,6 +9,8 @@ learning platform, Cleura Cloud Academy.
 ## Requirements <!-- .element class="hidden" -->
 `pip` <!-- element class="fragment" -->
 
+`venv`  <!-- element class="fragment" -->
+
 your preferred text editor <!-- element class="fragment" -->
 
 your own cloud's OpenStack credentials <!-- element class="fragment" -->
@@ -17,6 +19,9 @@ your own cloud's OpenStack credentials <!-- element class="fragment" -->
 If you're working on your own machine, you will need
 
 * a terminal that you can run `pip` in,
+
+* (since you probably want to run `pip` in a venv) the Python venv
+  module.
 
 * your preferred editor for writing Python code, and
 
