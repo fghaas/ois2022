@@ -28,6 +28,10 @@ body:after {
   border: none;
 }
 
+.reveal .code-wrapper {
+  padding: 1em;
+}
+
 .reveal .fragment .visible {
   opacity: 0.4 !important;
 }
