@@ -1,0 +1,56 @@
+---
+heat_template_version: rocky
+
+parameters:
+  public_net_id:
+    type: string
+    description: Public network ID
+    default: ext-net
+    constraints:
+      - custom_constraint: neutron.network
+  ipv4_network_cidr:
+    type: string
+    description: IPv4 fixed network CIDR
+    default: 192.168.122.0/24
+    constraints:
+      - custom_constraint: net_cidr
+
+resources:
+  test_net:
+    type: OS::Neutron::Net
+    properties:
+      name: test-net
+
+  test_subnet_ipv4:
+    type: OS::Neutron::Subnet
+    properties:
+      name: test-subnet-ipv4
+      network_id: { get_resource: test_net }
+      cidr: { get_param: ipv4_network_cidr }
+      dns_nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      enable_dhcp: true
+
+  router:
+    type: OS::Neutron::Router
+
+  router_gateway:
+    type: OS::Neutron::RouterGateway
+    properties:
+      router_id: { get_resource: router }
+      network_id: { get_param: public_net_id }
+
+  router_interface_ipv4:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: router }
+      subnet_id: { get_resource: test_subnet_ipv4 }
+
+outputs:
+  network:
+    description: UUID of the test network
+    value: { get_resource: test_net }
+  subnet_ipv4:
+    description: UUID of the IPv4 subnet
+    value: { get_resource: test_subnet_ipv4 }
