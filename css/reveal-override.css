@@ -32,10 +32,10 @@ body:after {
   padding: 1em;
 }
 
-.reveal .fragment .visible {
+.reveal .fragment.visible {
   opacity: 0.4 !important;
 }
 
-.reveal .fragment .current-fragment {
+.reveal .fragment.current-fragment {
   opacity: 1 !important;
 }
