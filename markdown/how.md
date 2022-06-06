@@ -219,8 +219,8 @@ names and UUIDs) that have a `tag` with the content `os:ubuntu`.
 
 ```python
 [(i.name, i.id for i in conn.list_images()
-  if i.properties["os_distro"] == "ubuntu"
-  and i.properties["os_version"] == "20.04"]
+  if i.properties.get("os_distro") == "ubuntu"
+  and i.properties.get("os_version") == "20.04"]
 ```
 
 <!-- Note -->
@@ -231,6 +231,10 @@ can expect those to follow the [libosinfo](https://libosinfo.org/)
 convention.
 
 As before, you can use list comprehension with those.
+
+Using `i.properties.get(key)` rather than simply `i.properties[key]`
+avoids `KeyError` exceptions on images that don’t define the property
+you’re filtering for.
 
 
 ## Finding an image UUID (with name) <!-- .element class="hidden" -->

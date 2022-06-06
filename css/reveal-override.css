@@ -39,3 +39,7 @@ body:after {
 .reveal .fragment.current-fragment {
   opacity: 1 !important;
 }
+
+.reveal p img {
+  vertical-align: bottom;
+}
